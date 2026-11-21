@@ -169,7 +169,7 @@ export const AuthProvider = ({ children }) => {
     // 7-Day Trial Activation
     const startFreeTrial = async () => {
         if (!currentUser?.uid) throw new Error("Please log in first.");
-        const res = await fetch(`http://localhost:5000/api/users/${currentUser.uid}/start-trial`, {
+        const res = await fetch(`/api/users/${currentUser.uid}/start-trial`, {
             method: "POST"
         });
         const data = await res.json();

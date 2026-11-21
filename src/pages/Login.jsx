@@ -21,7 +21,7 @@ export default function Login() {
   // Evaluates login requirement and automatically triggers Email OTP dispatch
   const processPostAuthSecurity = async (firebaseUser, userEmail) => {
     try {
-      const res = await fetch("http://localhost:5000/api/2fa/check-login-requirement", {
+      const res = await fetch("/api/2fa/check-login-requirement", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId: firebaseUser.uid }),
@@ -43,7 +43,7 @@ export default function Login() {
 
         // TRIGGER EMAIL OTP DISPATCH
         try {
-          await fetch("http://localhost:5000/api/auth/send-email-otp", {
+          await fetch("/api/auth/send-email-otp", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email: targetEmail }),
@@ -55,7 +55,7 @@ export default function Login() {
         setStep("otp_prompt");
       } else {
         // Normal login without challenge
-        await fetch("http://localhost:5000/api/2fa/complete-login", {
+        await fetch("/api/2fa/complete-login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ userId: firebaseUser.uid }),
@@ -119,7 +119,7 @@ export default function Login() {
     setError("");
 
     try {
-      const res = await fetch("http://localhost:5000/api/2fa/complete-login", {
+      const res = await fetch("/api/2fa/complete-login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -148,7 +148,7 @@ export default function Login() {
     setError("");
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/api/auth/send-email-otp", {
+      const res = await fetch("/api/auth/send-email-otp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: pendingEmail }),

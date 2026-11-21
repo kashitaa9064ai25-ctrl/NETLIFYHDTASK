@@ -51,7 +51,7 @@ function Navbar() {
       });
 
       try {
-        const res = await fetch(`http://localhost:5000/api/posts?userPlan=${userPlan}`);
+        const res = await fetch(`/api/posts?userPlan=${userPlan}`);
         const data = await res.json();
 
         if (data.success && data.posts) {
@@ -283,8 +283,8 @@ function Navbar() {
             <div className="flex items-center space-x-1 sm:space-x-2 shrink-0">
               <span
                 className={`text-[9px] sm:text-[11px] px-1.5 py-0.5 rounded font-semibold uppercase tracking-wider border shrink-0 ${userPlan === 'Paid'
-                    ? 'bg-amber-100 text-amber-800 border-amber-300'
-                    : 'bg-gray-100 text-gray-600 border-gray-300'
+                  ? 'bg-amber-100 text-amber-800 border-amber-300'
+                  : 'bg-gray-100 text-gray-600 border-gray-300'
                   }`}
               >
                 {userPlan === 'Paid' && isTrialActive ? 'Trial' : userPlan}

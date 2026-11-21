@@ -44,7 +44,7 @@ export default function BrowsePosts() {
         setLoading(true);
         setError('');
         try {
-            const response = await fetch(`http://localhost:5000/api/posts?userPlan=${userPlan}`);
+            const response = await fetch(`/api/posts?userPlan=${userPlan}`);
             const data = await response.json();
             if (response.ok && data.success) {
                 setAllPosts(data.posts || []);
@@ -66,7 +66,7 @@ export default function BrowsePosts() {
     // Load comments whenever a post is opened in modal
     const fetchComments = async (postId) => {
         try {
-            const res = await fetch(`http://localhost:5000/api/posts/${postId}/comments`);
+            const res = await fetch(`/api/posts/${postId}/comments`);
             const data = await res.json();
             if (res.ok && data.success) {
                 setComments(data.comments || []);
@@ -90,7 +90,7 @@ export default function BrowsePosts() {
 
         setCommentLoading(true);
         try {
-            const res = await fetch(`http://localhost:5000/api/posts/${expandedPost.id}/comments`, {
+            const res = await fetch(`/api/posts/${expandedPost.id}/comments`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -119,7 +119,7 @@ export default function BrowsePosts() {
         if (!currentUser || currentUser.uid !== expandedPost.userId) return;
 
         try {
-            const res = await fetch(`http://localhost:5000/api/posts/${expandedPost.id}/comments/${commentId}/solution`, {
+            const res = await fetch(`/api/posts/${expandedPost.id}/comments/${commentId}/solution`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ userId: currentUser.uid }),
@@ -181,7 +181,7 @@ export default function BrowsePosts() {
         setDeleting(true);
         try {
             const response = await fetch(
-                `http://localhost:5000/api/posts/${deleteTarget.id}?userId=${encodeURIComponent(
+                `/api/posts/${deleteTarget.id}?userId=${encodeURIComponent(
                     currentUser.uid
                 )}&authorName=${encodeURIComponent(currentUser.displayName || '')}`,
                 {
@@ -219,7 +219,7 @@ export default function BrowsePosts() {
         }
 
         try {
-            const res = await fetch(`http://localhost:5000/api/posts/${postId}/vote`, {
+            const res = await fetch(`/api/posts/${postId}/vote`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ userId: currentUser.uid }),

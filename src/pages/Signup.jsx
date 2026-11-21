@@ -18,7 +18,7 @@ export default function Login() {
   // Authenticate credentials, then check if 2FA challenge is triggered
   const handleInitialAuth = async (firebaseUser) => {
     try {
-      const res = await fetch('http://localhost:5000/api/2fa/check-login-requirement', {
+      const res = await fetch('/api/2fa/check-login-requirement', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userId: firebaseUser.uid }),
@@ -37,7 +37,7 @@ export default function Login() {
         setStep('2fa_prompt');
       } else {
         // Complete login directly without challenge
-        await fetch('http://localhost:5000/api/2fa/complete-login', {
+        await fetch('/api/2fa/complete-login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ userId: firebaseUser.uid }),
@@ -87,7 +87,7 @@ export default function Login() {
     setError('');
 
     try {
-      const res = await fetch('http://localhost:5000/api/2fa/complete-login', {
+      const res = await fetch('/api/2fa/complete-login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

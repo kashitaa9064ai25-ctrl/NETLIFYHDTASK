@@ -18,7 +18,7 @@ export default function AdminDashboard() {
 
         try {
             // Fetch Analytics
-            const analyticsRes = await fetch('http://localhost:5000/api/admin/analytics', {
+            const analyticsRes = await fetch('/api/admin/analytics', {
                 headers: { 'x-admin-userid': currentUser.uid },
             });
             const analyticsData = await analyticsRes.json();
@@ -31,7 +31,7 @@ export default function AdminDashboard() {
             setAnalytics(analyticsData.analytics);
 
             // Fetch Posts for Moderation
-            const postsRes = await fetch('http://localhost:5000/api/posts?userPlan=Paid');
+            const postsRes = await fetch('/api/posts?userPlan=Paid');
             const postsData = await postsRes.json();
             if (postsRes.ok && postsData.success) {
                 setPosts(postsData.posts || []);
@@ -53,7 +53,7 @@ export default function AdminDashboard() {
         if (!confirmed) return;
 
         try {
-            const res = await fetch(`http://localhost:5000/api/admin/posts/${postId}`, {
+            const res = await fetch(`/api/admin/posts/${postId}`, {
                 method: 'DELETE',
                 headers: { 'x-admin-userid': currentUser.uid },
             });

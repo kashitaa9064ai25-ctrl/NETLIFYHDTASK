@@ -43,7 +43,7 @@ export default function TwoFactorSetup() {
         setActionLoading(true);
 
         try {
-            const res = await fetch('http://localhost:5000/api/2fa/generate', {
+            const res = await fetch('/api/2fa/generate', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -78,7 +78,7 @@ export default function TwoFactorSetup() {
         setError('');
 
         try {
-            const res = await fetch('http://localhost:5000/api/2fa/verify-and-enable', {
+            const res = await fetch('/api/2fa/verify-and-enable', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -114,7 +114,7 @@ export default function TwoFactorSetup() {
         setError('');
 
         try {
-            const res = await fetch('http://localhost:5000/api/2fa/disable', {
+            const res = await fetch('/api/2fa/disable', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

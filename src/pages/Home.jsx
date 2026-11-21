@@ -45,7 +45,7 @@ export default function Home() {
 
     setLoadingArticles(true);
     try {
-      const response = await fetch(`http://localhost:5000/api/posts?userPlan=${userPlan}`);
+      const response = await fetch(`/api/posts?userPlan=${userPlan}`);
       const data = await response.json();
 
       if (response.ok && data.success) {
