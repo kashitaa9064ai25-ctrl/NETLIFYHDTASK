@@ -791,4 +791,6 @@ app.delete('/api/admin/posts/:id', async (req, res) => {
 });
 
 const serverless = require('serverless-http');
-module.exports.handler = serverless(app);
+module.exports.handler = serverless(app, {
+    basePath: '/.netlify/functions/api',
+});

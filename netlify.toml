@@ -8,13 +8,13 @@
 
 [[redirects]]
   from = "/api/*"
-  to = "/.netlify/functions/api"
+  to = "/.netlify/functions/api/api/:splat"
   status = 200
   force = true
 
 [[redirects]]
   from = "/subscribe"
-  to = "/.netlify/functions/api"
+  to = "/.netlify/functions/api/subscribe"
   status = 200
   force = true
 
